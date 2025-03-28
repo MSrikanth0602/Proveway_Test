@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            max-width: 400px;
+            background-color: #f8f8f8;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .option {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .option:first-child {
+            margin-bottom: 15px; /* Adjusted space between 1 Pair and other plans */
+        }
+        .option input {
+            margin-right: 3px; /* Reduced space between radio button and content */
+        }
+        .selected {
+            border-color: green;
+            background: #e6f7e6;
+        }
+        .dropdowns {
+            display: none;
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .dropdowns label {
+            margin: 0 10px 0 0;
+        }
+        .total {
+            font-weight: bold;
+            margin-top: 15px;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: green;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="option selected" onclick="selectOption(this, 195)">
+            <input type="radio" name="pair" checked> 
+            <span>1 Pair - DKK 195.00 (50% OFF)</span>
+            <div class="dropdowns" style="display: flex;">
+                <label>Size: <select><option>S</option><option>M</option><option>L</option></select></label>
+                <label>Color: <select><option>Red</option><option>Blue</option><option>Black</option></select></label>
+            </div>
+        </div>
+        <div class="option" onclick="selectOption(this, 345)">
+            <input type="radio" name="pair"> 
+            <span>2 Pairs - DKK 345.00 (40% OFF)</span>
+            <div class="dropdowns">
+                <label>Size: <select><option>S</option><option>M</option><option>L</option></select></label>
+                <label>Color: <select><option>Red</option><option>Blue</option><option>Black</option></select></label>
+            </div>
+        </div>
+        <div class="option" onclick="selectOption(this, 528)">
+            <input type="radio" name="pair"> 
+            <span>3 Pairs - DKK 528.00 (60% OFF)</span>
+            <div class="dropdowns">
+                <label>Size: <select><option>S</option><option>M</option><option>L</option></select></label>
+                <label>Color: <select><option>Red</option><option>Blue</option><option>Black</option></select></label>
+            </div>
+        </div>
+        
+        <p class="total">Total: DKK <span id="total">195</span>.00</p>
+        <button>Add to Cart</button>
+    </div>
+
+    <script>
+        function selectOption(selectedOption, price) {
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            selectedOption.classList.add('selected');
+            document.getElementById('total').textContent = price;
+            
+            document.querySelectorAll('.dropdowns').forEach(drop => drop.style.display = 'none');
+            selectedOption.querySelector('.dropdowns').style.display = 'flex';
+
+            // Ensure correct radio button is selected
+            selectedOption.querySelector('input[type="radio"]').checked = true;
+        }
+    </script>
+</body>
+</html>
